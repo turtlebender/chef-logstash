@@ -176,8 +176,8 @@ end
 logrotate_app "logstash" do
   path "#{node['logstash']['log_dir']}/*.log"
   frequency "daily"
-  rotate "30"
-  options [ "missingok", "notifempty" ]
+  rotate "7"
+  options [ "compress","copytruncate", "missingok", "notifempty" ]
   create "664 #{node['logstash']['user']} #{node['logstash']['group']}"
   notifies :restart, "service[rsyslog]"
 end
